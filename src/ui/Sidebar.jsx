@@ -7,7 +7,7 @@ export default function Sidebar() {
     <aside className="bg-gray-50 p-[3.2rem] border md:flex lg:flex flex-col hidden shadow-lg row-span-full gap-6">
         <MainNav />
     </aside>
-    <aside className="flex md:hidden lg:hidden">
+    <aside className="flex md:hidden  lg:hidden">
       <MobileMainNav/>
     </aside>
     </>

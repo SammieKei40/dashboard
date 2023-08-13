@@ -13,7 +13,7 @@ function MobileMainNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0  shadow-top z-10">
+    <nav className="fixed bottom-0 left-0 right-0 bg-yellow-500 shadow-lg z-10">
       <ul className="flex justify-around py-3">
         {navLinks.map((link, index) => (
           <li key={index} className="text-center text-4xl">
