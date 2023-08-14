@@ -4,33 +4,40 @@ import FormRowVertical from "../../ui/FormRowVertical";
 import { useState } from "react";
 import Input from "../../ui/Input";
 import { FormProvider, useForm } from "react-hook-form";
+import Button from "../../ui/Button";
+import SpinnerMini from "../../ui/SpinnerMini";
 
-export default function LoginForm({onSubmit}) {
+export default function LoginForm() {
     const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {handleSubmit,   errors, register } = useForm();
+  const {handleSubmit,   errors, control } = useForm();
 
   // const handleFormSubmit = (data) => {
-  //   onSubmit(data);
+  //   console.log(data);
   // };
-const handleFormSubmit = () => {
-  if (!email || !password) return;
+// const handleFormSubmit = () => {
+//   // if (!email || !password) return;
+//   console.log(email, password)
+//   // login(
+//   //   { email, password },
+//   //   {
+//   //     onSettled: () => {
+//   //       setEmail("");
+//   //       setPassword("");
+//   //     },
+//   //   }
+//   // );
+// };
+const onSubmit = ( e) => {
+  e.preventDefault()
   console.log(email, password)
-  // login(
-  //   { email, password },
-  //   {
-  //     onSettled: () => {
-  //       setEmail("");
-  //       setPassword("");
-  //     },
-  //   }
-  // );
 };
 
 
   return (
-    <Form >
+    
+    <Form onSubmit={handleSubmit(onSubmit)}>
         <Input 
       value={email }
       type="email" 
@@ -39,14 +46,22 @@ const handleFormSubmit = () => {
       iconclick
       styletype="input" 
       placeholder=""
+      control={control}
+  name="email"
+  rules={{
+    required: 'Username is required',
+    minLength: {
+      value: 3,
+      message: 'Username must be at least 3 characters long',
+    },
+  }}
       // validationRules={{
       //   required: "Email is required",
       //   pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
       // }}
       onChange={(value) => setEmail(value)} 
-      error={errors}
+      // error={errors}
     />
-
     <Input 
       value={ password }
       type="password" 
@@ -54,6 +69,14 @@ const handleFormSubmit = () => {
       size="medium" 
       styletype="input" 
       iconclick 
+      name="password"
+      rules={{
+        required: "Password is required",
+        minLength: {
+          value: 8,
+          message: "Password must be at least 8 characters long",
+        },
+      }}
       // validationRules={{
       //   required: "Password is required",
       //   minLength: 6,
@@ -61,7 +84,12 @@ const handleFormSubmit = () => {
       onChange={(value) => setPassword(value)} 
       error={errors}
     />
-                <button type="submit" onClick={handleSubmit(handleFormSubmit)}>Submit</button>
+    
+    <Button   iconOnly={false}
+        full
+        disabled={false}
+        loading={true} round={false} size="medium" class=" text-xl" type="pry">Log in</Button>
+              
     </Form>
   )
 }
