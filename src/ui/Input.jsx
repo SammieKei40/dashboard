@@ -1,24 +1,24 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { HiOutlineHome, HiOutlinePhoneMissedCall } from "react-icons/hi";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 export default function Input(props) {
   const {
-    value: { value },
+    value,
     disabled = false,
     label,
-    size = "medium",
-    full = false,
-    styleType,
-    iconClick = false,
+    size,
+    full,
+    styletype,
+    iconclick = false,
     iconLeft = false,
     iconColor = "gray",
-    validationRules,
+    // validationRules,
     error
   } = props;
 
-  const { control } = useForm();
+  const { control , register} = useForm();
 
   const [inputType, setInputType] = useState(props.type);
   const [isHidden, setIsHidden] = useState(props.type === "password");
@@ -41,11 +41,11 @@ export default function Input(props) {
   const classed = `${base} ${
     sizes[size] ?? sizes["medium"]
   } ${
-    styleTypes[styleType] ?? styleTypes["input"]
+    styleTypes[styletype] ?? styleTypes["input"]
   } ${full ? "w-full" : ""}`;
 
   const handleIconClick = () => {
-    if (!iconClick || props.type !== "password") return;
+    if (!iconclick || props.type !== "password") return;
 
     setIsHidden(!isHidden);
     if (isHidden) {
@@ -64,20 +64,17 @@ export default function Input(props) {
           <label className="text-black  font-bold text-3xl  mb-2">{label}</label>
         )}
         <div className="relative py-1">
-          <Controller
-            name="inputField"
-            control={control}
-            rules={validationRules} 
-            render={({ field }) => (
-              <>
-                <input
-                  {...field}
+        <input
+          {...props}
+          {...register(inputType, {
+            required: true
+          })}
                   className={`${
                     classed
-                  } ${iconLeft ? "pl-10" : ""} inline-block w-full focus:border-green-deep text-black mr-3 px-2`}
+                  } ${iconLeft ? "pl-10" : ""} inline-block w-full text-black mr-3 px-2`}
                   type={inputType}
                   value={value}
-                  onChange={(e) => props.onChange(e.target.value)}
+                  onChange={(e) =>{ props.onChange(e.target.value)}}
                   disabled={disabled}
                   required
                 />
@@ -87,10 +84,10 @@ export default function Input(props) {
                     className={`absolute text-black top-4 bottom-0 my-auto right-5 ${
                       full ? "right-2 left-auto" : ""
                     } ${
-                      styleType === "input" ? "bg-gray" : ""
-                    } ${iconClick ? "cursor-pointer" : ""} ${iconLeft ? "left-2" : ""}`}
+                      styletype === "input" ? "" : ""
+                    } ${iconclick ? "cursor-pointer" : ""} ${iconLeft ? "left-2" : ""}`}
                   >
-                    {React.createElement(icon === "O" ? HiOutlineHome : HiOutlinePhoneMissedCall, {
+                    {React.createElement(icon === "O" ? HiEye : HiEyeOff, {
                       size: 22,
                       textcolor: iconColor,
                     })}
@@ -98,12 +95,49 @@ export default function Input(props) {
                 )}
                 {error && (
                   <p className="font-medium mt-2 text-xs text-red-600">
-                    {error}
+                    {error[inputType]?.message}
+                  </p>
+                )}
+          {/* <Controller
+            name={inputType}
+            control={control}
+            rules={validationRules} 
+            render={({ field }) => (
+              <>
+                <input
+                  {...field}
+                  className={`${
+                    classed
+                  } ${iconLeft ? "pl-10" : ""} inline-block w-full text-black mr-3 px-2`}
+                  type={inputType}
+                  value={field.value}
+                  onChange={(e) =>{field.onChange(e); props.onChange(e.target.value)}}
+                  disabled={disabled}
+                  required
+                />
+                {props.type === "password" && (
+                  <div
+                    onClick={handleIconClick}
+                    className={`absolute text-black top-4 bottom-0 my-auto right-5 ${
+                      full ? "right-2 left-auto" : ""
+                    } ${
+                      styleType === "input" ? "" : ""
+                    } ${iconClick ? "cursor-pointer" : ""} ${iconLeft ? "left-2" : ""}`}
+                  >
+                    {React.createElement(icon === "O" ? HiEye : HiEyeOff, {
+                      size: 22,
+                      textcolor: iconColor,
+                    })}
+                  </div>
+                )}
+                {error && (
+                  <p className="font-medium mt-2 text-xs text-red-600">
+                    {error[inputType]?.message}
                   </p>
                 )}
               </>
             )}
-          />
+          /> */}
         </div>
       </div>
     </div>
