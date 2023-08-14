@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { BiLoaderAlt } from 'react-icons/bi';
 import SpinnerMini from './SpinnerMini';
 
 const Button = (props) => {
@@ -8,7 +7,7 @@ const Button = (props) => {
 
   const sizes = {
     small: 'py-4 px-4',
-    medium: 'py-8 px-6',
+    medium: 'py-6 px-4',
     big: 'py-4 px-8 txt-s-4',
   };
 
@@ -18,7 +17,7 @@ const Button = (props) => {
       text: '#fff',
     },
     pry: {
-      __class: 'text-white bg-[#8E7AE3] text-4xl  rounded border border-gray-200 text-sm font-medium ',
+      __class: 'text-white bg-[#8E7AE3] text-3xl  rounded border border-gray-200 font-medium ',
       text: '#fff',
     },
     delete: {
@@ -37,12 +36,12 @@ const Button = (props) => {
 
   const renderIcon = () => {
     if (props.icon || props.loading) {
-      const IconComponent = props.loading ? "H" : props.icon;
+      const IconComponent = props.loading ? SpinnerMini : props.icon;
 
       return (
         <IconComponent
           className={`${!props.iconOnly ? 'mr-2' : ''} my-auto`}
-          size="17"
+          size="20"
           color={types[props.type]?.text}
         />
       );
@@ -56,7 +55,7 @@ const Button = (props) => {
       ((types[props.type] && types[props.type].__class) || types['pry'].__class) +
       ' ' +
       (sizes[props.size] || sizes['medium']);
-    if (props.round) __base += ' rounded-full h-12 w-12 max-w-12 center';
+    if (props.round) __base += ' rounded-full h-12 w-12 max-w-12 text-center';
     else __base += ' ' + base;
 
     if (props.full) __base += ' w-full';
@@ -72,12 +71,14 @@ const Button = (props) => {
       style={{ whiteSpace: 'nowrap' }}
       disabled={props.disabled}
     >
-      {renderIcon()}
+        <div className='flex justify-center gap-5 items-center'>
+        {renderIcon()}
       <span
         className={`my-auto ${!props.icon && !props.loading ? (props.round ? ' mt-1 ml-1 z-50' : 'm-auto') : ''}`}
-      >
+        >
         {props.children}
       </span>
+      </div>
     </button>
   );
 };

@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import Form from "../../ui/Form";
-import FormRowVertical from "../../ui/FormRowVertical";
 import { useState } from "react";
 import Input from "../../ui/Input";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../ui/Button";
-import SpinnerMini from "../../ui/SpinnerMini";
+import Spinner from "../../ui/Spinner";
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
@@ -84,11 +83,13 @@ const onSubmit = ( e) => {
       onChange={(value) => setPassword(value)} 
       error={errors}
     />
+
+    {/* <Spinner /> */}
     
-    <Button   iconOnly={false}
+    <Button  
         full
         disabled={false}
-        loading={true} round={false} size="medium" class=" text-xl" type="pry">Log in</Button>
+        loading={false} round={false} size="medium"  type="pry">Log in</Button>
               
     </Form>
   )
