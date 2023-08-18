@@ -7,30 +7,21 @@ import Button from "../../ui/Button";
 import Spinner from "../../ui/Spinner";
 
 export default function LoginForm() {
-    const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {handleSubmit,  control } = useForm();
+  const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
 
-  const {handleSubmit,   errors, control } = useForm();
+  const handleInputChange = (fieldName, value) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [fieldName]: value,
+    }));
+  };
 
-  // const handleFormSubmit = (data) => {
-  //   console.log(data);
-  // };
-// const handleFormSubmit = () => {
-//   // if (!email || !password) return;
-//   console.log(email, password)
-//   // login(
-//   //   { email, password },
-//   //   {
-//   //     onSettled: () => {
-//   //       setEmail("");
-//   //       setPassword("");
-//   //     },
-//   //   }
-//   // );
-// };
-const onSubmit = ( e) => {
-  e.preventDefault()
-  console.log(email, password)
+const onSubmit = ( data) => {
+  console.log(data)
 };
 
 
@@ -38,7 +29,6 @@ const onSubmit = ( e) => {
     
     <Form onSubmit={handleSubmit(onSubmit)}>
         <Input 
-      value={email }
       type="email" 
       label="Email" 
       size="medium"
@@ -47,42 +37,46 @@ const onSubmit = ( e) => {
       placeholder=""
       control={control}
   name="email"
-  rules={{
-    required: 'Username is required',
-    minLength: {
-      value: 3,
-      message: 'Username must be at least 3 characters long',
+  validationRules={{
+    required: 'Email is required',
+    maxLength: {
+      value: 50,
+      message: 'Email should not exceed 50 characters',
+    },
+    pattern: {
+      value: /^\S+@\S+$/i,
+      message: 'Invalid email format',
     },
   }}
-      // validationRules={{
-      //   required: "Email is required",
-      //   pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-      // }}
-      onChange={(value) => setEmail(value)} 
-      // error={errors}
+  value={formData.username}
+        onChange={(value) => handleInputChange('username', value)}
     />
     <Input 
-      value={ password }
       type="password" 
       label="Password" 
       size="medium" 
       styletype="input" 
       iconclick 
       name="password"
-      rules={{
-        required: "Password is required",
+      control={control}
+      validationRules={{
+        required: 'Password is required',
+        maxLength: {
+          value: 50,
+          message: 'Password should not exceed 50 characters',
+        },
         minLength: {
-          value: 8,
-          message: "Password must be at least 8 characters long",
+          value: 6,
+          message: 'Password should be at least 6 characters long',
+        },
+        pattern: {
+          value: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$!%*?&-_.#]+$/,
+          message: 'Password must contain at least one uppercase letter, one lowercase letter, and one digit',
         },
       }}
-      // validationRules={{
-      //   required: "Password is required",
-      //   minLength: 6,
-      // }}
-      onChange={(value) => setPassword(value)} 
-      error={errors}
-    />
+      value={formData.password}
+        onChange={(value) => handleInputChange('password', value)}
+     />
 
     {/* <Spinner /> */}
     

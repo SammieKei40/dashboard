@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-function Form({ children, type }) {
+function Form({ children, type, onSubmit }) {
   return (
-    <form
+    <form onSubmit={onSubmit}
       className={`${
         type === "regular"
           ? "p-6 bg-gray-50 border border-gray-300 rounded-md"
