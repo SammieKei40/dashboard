@@ -4,7 +4,7 @@ import { useState } from "react";
 import Input from "../../ui/Input";
 import { FormProvider, useForm } from "react-hook-form";
 import Button from "../../ui/Button";
-import Spinner from "../../ui/Spinner";
+
 
 export default function LoginForm() {
   const {handleSubmit,  control } = useForm();
@@ -86,5 +86,6 @@ const onSubmit = ( data) => {
         loading={false} round={false} size="medium"  type="pry">Log in</Button>
               
     </Form>
+    
   )
 }

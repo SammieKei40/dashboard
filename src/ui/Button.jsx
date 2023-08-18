@@ -93,6 +93,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   loading: PropTypes.bool,
   children: PropTypes.node,
+  onclick: PropTypes.isRequired
 };
 
 export default Button;
