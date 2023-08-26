@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import SpinnerMini from './SpinnerMini';
+import React from 'react';
 
 const Button = (props) => {
   const [base] = useState('rounded-xl');
@@ -12,16 +13,16 @@ const Button = (props) => {
   };
 
   const types = {
-    sec: {
-      __class: 'border-pry rounded mt-10 bg-green-deep text-[#fff] font-bold btn-pry',
+    alternate: {
+      __class: 'border border-[#858585] text-3xl rounded-lg bg-white text-black font-medium ',
       text: '#fff',
     },
     pry: {
-      __class: 'text-white bg-[#8E7AE3] text-3xl  rounded border border-gray-200 font-medium ',
+      __class: 'text-white bg-black text-3xl  rounded-lg font-medium ',
       text: '#fff',
     },
-    delete: {
-      __class: 'text-white bg-red-600 hover:bg-red-700 rounded-lg',
+    secondary: {
+      __class: 'text-white bg-[#B99745] text-3xl  rounded-lg',
       text: '#fff',
     },
   };
@@ -59,7 +60,7 @@ const Button = (props) => {
     else __base += ' ' + base;
 
     if (props.full) __base += ' w-full';
-    if (props.disabled) __base += ' fade-40 cursor-not-allowed';
+    if (props.disabled) __base += ' opacity-40 cursor-not-allowed';
 
     return __base;
   })();
@@ -73,27 +74,32 @@ const Button = (props) => {
     >
         <div className='flex justify-center gap-5 items-center'>
         {renderIcon()}
+        
       <span
-        className={`my-auto ${!props.icon && !props.loading ? (props.round ? ' mt-1 ml-1 z-50' : 'm-auto') : ''}`}
+        className={`my-auto flex items-center ${!props.icon && !props.loading ? (props.round ? ' mt-1 ml-1 z-50' : 'm-auto') : ''}`}
         >
         {props.children}
+        {props.showArrow && (
+        <svg
+          className="h-10 w-10 ml-96 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          />
+        </svg>
+        )}
       </span>
       </div>
     </button>
   );
 };
 
-Button.propTypes = {
-  size: PropTypes.string,
-  type: PropTypes.string,
-  round: PropTypes.bool,
-  icon: PropTypes.object,
-  iconOnly: PropTypes.bool,
-  full: PropTypes.bool,
-  disabled: PropTypes.bool,
-  loading: PropTypes.bool,
-  children: PropTypes.node,
-  onclick: PropTypes.isRequired
-};
 
 export default Button;

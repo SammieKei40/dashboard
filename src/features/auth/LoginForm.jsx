@@ -28,24 +28,25 @@ const onSubmit = ( data) => {
   return (
     
     <Form onSubmit={handleSubmit(onSubmit)}>
+  
         <Input 
-      type="email" 
-      label="Email" 
+      type="text" 
+      label="Username" 
       size="medium"
       iconclick
       styletype="input" 
       placeholder=""
       control={control}
-  name="email"
+      name="username"
   validationRules={{
-    required: 'Email is required',
+    required: 'Username is required',
     maxLength: {
       value: 50,
-      message: 'Email should not exceed 50 characters',
+      message: 'Username should not exceed 50 characters',
     },
     pattern: {
       value: /^\S+@\S+$/i,
-      message: 'Invalid email format',
+      message: 'Invalid username format',
     },
   }}
   value={formData.username}
@@ -84,8 +85,8 @@ const onSubmit = ( data) => {
         full
         disabled={false}
         loading={false} round={false} size="medium"  type="pry">Log in</Button>
-              
-    </Form>
+
+     </Form>
     
   )
 }
