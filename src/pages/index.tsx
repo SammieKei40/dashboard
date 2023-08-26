@@ -7,6 +7,8 @@ import Dropdown from "../ui/Dropdown";
 import RadioButton from '../ui/RadioButton';
 import CheckBox from "../ui/CheckBox";
 import ToggleButton from "../ui/ToggleButton";
+import SplitInput from "../ui/SplitInput";
+import Modal from "../ui/Modal";
 
 export default function Index() {
   //Form Validation
@@ -49,6 +51,25 @@ export default function Index() {
 
   const handleToggle = () => {
     setIsActive(!isActive);
+  };
+
+  //Split Input
+  const [otpValue, setOtpValue] = useState('');
+  const [otpError, setOtpError] = useState(true);
+
+  const handleOtpChange = (newValue: string) => {
+    setOtpValue(newValue);
+  };
+
+  //Modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   
@@ -112,6 +133,10 @@ export default function Index() {
         onChange={(value: any) => handleInputChange('password', value)}
      />
 
+      <div className="mt-4 flex justify-center items-center">
+      <SplitInput length={6} value={otpValue} onChange={handleOtpChange} hasError={otpError} errorText="Invalid OTP"/>
+      </div>
+
       <div className="flex flex-col gap-3 mt-3">
         <Button
                 full
@@ -152,16 +177,22 @@ export default function Index() {
         </div>
      </form>
     </div>
+
+    <div className="mt-6">
+    <h1 className="text-4xl"> Modal</h1>
+
+    <button type="button" onClick={openModal} className="bg-black text-white p-3 rounded">Open Modal</button>
+
+    {isModalOpen && (
+        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+          <h2>Modal Content</h2>
+          <p>This is the content of the modal.</p>
+          <button type="button" onClick={closeModal}>Close</button>
+        </Modal>
+      )}
+    </div>
   </div>
 </div>
 
-
-    // <div className="h-screen  items-center p-5 text-center  md:place-content-center  bg-gray-50">
-
-    //     <h1 className="font-bold mb-5 text-4xl md:text-6xl ">Reuseable Components</h1>
-    //     <div className="grid items-center">
-    //     <LoginForm />
-    //     </div>
-    // </div>
   )
 }

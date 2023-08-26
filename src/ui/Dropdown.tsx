@@ -44,12 +44,13 @@ export default function Dropdown({options}) {
       </div>
 
       {isDropdownOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+        <div className="origin-top-right absolute right-0 mt-2 z-50 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             {options.map((option, index) => (
               <button
+              type='button'
                 key={index}
-                className="block w-full cursor-pointer px-4 py-5 text-3xl leading-5 text-gray-700 hover:bg-[#B99745] hover:text-white focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                className="block w-full cursor-pointer px-4 py-5  text-3xl leading-5 text-gray-700 hover:bg-[#B99745] hover:text-white focus:outline-none focus:bg-gray-100 focus:text-gray-900"
                 role="menuitem"
                 onClick={() => handleOptionClick(option)}
               >
