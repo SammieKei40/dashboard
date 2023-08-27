@@ -10,6 +10,138 @@ import ToggleButton from "../ui/ToggleButton";
 import SplitInput from "../ui/SplitInput";
 import Modal from "../ui/Modal";
 import SuccessModal from "../ui/SuccessModal";
+import TableComponent from "../ui/Table";
+
+const data = [
+  {
+    name: "Emmanuel Jackson",
+    sex: "Female",
+    dob: "29/08/2004",
+    email: "emmanueljackson@gmail.com",
+    phone: "09012345654",
+    brm: "Samson CHibuke",
+    Address: "13, Mc ewen street sabo, yaba",
+    verif: {
+      text: "Verified",
+      // icon: VerifiedIcon,
+    },
+    active: true,
+  },
+  {
+    name: "Emmanuel Jackson",
+    sex: "Female",
+    dob: "29/08/2004",
+    email: "emmanueljackson@gmail.com",
+    phone: "09012345654",
+    brm: "Samson CHibuke",
+    Address: "13, Mc ewen street sabo, yaba",
+    verif: {
+      text: "Verified",
+      // icon: VerifiedIcon,
+    },
+    active: true,
+  },
+  {
+    name: "Emmanuel Jackson",
+    sex: "Female",
+    dob: "29/08/2004",
+    email: "emmanueljackson@gmail.com",
+    phone: "09012345654",
+    brm: "Samson CHibuke",
+    Address: "13, Mc ewen street sabo, yaba",
+    verif: {
+      text: "Verified",
+      // icon: VerifiedIcon,
+    },
+    active: true,
+  },
+  {
+    name: "Emmanuel Jackson",
+    sex: "Female",
+    dob: "29/08/2004",
+    email: "emmanueljackson@gmail.com",
+    phone: "09012345654",
+    brm: "Samson CHibuke",
+    Address: "13, Mc ewen street sabo, yaba",
+    verif: {
+      text: "Verified",
+      // icon: VerifiedIcon,
+    },
+    active: true,
+  },
+  {
+    name: "Emmanuel Jackson",
+    sex: "Female",
+    dob: "29/08/2004",
+    email: "emmanueljackson@gmail.com",
+    phone: "09012345654",
+    brm: "Samson CHibuke",
+    Address: "13, Mc ewen street sabo, yaba",
+    verif: {
+      text: "Verified",
+      // icon: VerifiedIcon,
+    },
+    active: true,
+  },
+  {
+    name: "Emmanuel Jackson",
+    sex: "Female",
+    dob: "29/08/2004",
+    email: "emmanueljackson@gmail.com",
+    phone: "09012345654",
+    brm: "Samson CHibuke",
+    Address: "13, Mc ewen street sabo, yaba",
+    verif: {
+      text: "Verified",
+      // icon: VerifiedIcon,
+    },
+    active: true,
+  },
+
+  // ... add more user data here
+];
+
+
+const columns = [
+  {
+    value: "name",
+    text: "Name",
+  },
+  {
+    value: "sex",
+    text: "Sex",
+  },
+  {
+    value: "dob",
+    text: "Date of birth",
+  },
+  {
+    value: "email",
+    text: "Email",
+  },
+  {
+    value: "phone",
+    text: "Phone Number",
+  },
+  {
+    value: "brm",
+    text: "BRM Assigned",
+    class: "min-w-[150px]",
+  },
+  {
+    value: "Address",
+    text: "Address",
+    class: "min-w-[150px]",
+  },
+  // {
+  //   value: "verif",
+  //   text: "Verification",
+  // },
+  // {
+  //   value: "active",
+  //   text: "Status",
+  // },
+];
 
 export default function Index() {
   //Form Validation
@@ -145,9 +277,7 @@ export default function Index() {
         onChange={(value: any) => handleInputChange('password', value)}
      />
 
-      <div className="mt-4 flex justify-center items-center">
-      <SplitInput length={6} value={otpValue} onChange={handleOtpChange} hasError={otpError} errorText="Invalid OTP"/>
-      </div>
+      
 
       <div className="flex flex-col gap-3 mt-3">
         <Button
@@ -166,7 +296,16 @@ export default function Index() {
                 loading={true} round={false} size="medium"  type="alternate">Awesome!</Button>
         </div>
       
-        <Dropdown options={options} />
+        
+     </form>
+    </div>
+
+    <div>
+      <div className="mt-4 flex justify-center items-center">
+      <SplitInput length={6} value={otpValue} onChange={handleOtpChange} hasError={otpError} errorText="Invalid OTP"/>
+      </div>
+
+      <Dropdown options={options} />
 
         <div className="flex  mt-6 justify-between items-center gap-3">
           <span className="flex gap-3">
@@ -187,7 +326,6 @@ export default function Index() {
       />
           </span>
         </div>
-     </form>
     </div>
 
     <div className="mt-6">
@@ -240,8 +378,12 @@ export default function Index() {
       )}
     </div>
 
-    <div className="mt-6">
+    <div className="mt-6 ">
       <h1 className="text-4xl">Table</h1>
+
+      <div className="max-h-[calc(100vh-10px)] overflow-y-hidden overflow-x-auto">
+        <TableComponent data={data} columns={columns} link={["link"]} itemsPerPage={5} loading={false} showCheckbox={true} />
+      </div>
     </div>
   </div>
 </div>

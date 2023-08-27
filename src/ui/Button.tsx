@@ -67,7 +67,6 @@ const Button = (props) => {
 
   return (
     <button
-    type='button'
     onClick={props.onClick}
       ref={buttonRef}
       className={`${__class} ${props.disabled ? 'disabled-button' : ''}`}
