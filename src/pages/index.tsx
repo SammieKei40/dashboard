@@ -9,6 +9,7 @@ import CheckBox from "../ui/CheckBox";
 import ToggleButton from "../ui/ToggleButton";
 import SplitInput from "../ui/SplitInput";
 import Modal from "../ui/Modal";
+import SuccessModal from "../ui/SuccessModal";
 
 export default function Index() {
   //Form Validation
@@ -63,6 +64,7 @@ export default function Index() {
 
   //Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSuccessModal, setIsSuccessModal] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -71,6 +73,16 @@ export default function Index() {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const openSuccessModal = () => {
+    setIsSuccessModal(true);
+  };
+
+  const closeSuccessModal = () => {
+    setIsSuccessModal(false);
+  };
+  
+  
 
   
   return (
@@ -181,15 +193,55 @@ export default function Index() {
     <div className="mt-6">
     <h1 className="text-4xl"> Modal</h1>
 
-    <button type="button" onClick={openModal} className="bg-black text-white p-3 rounded">Open Modal</button>
+      <div className="flex justify-between items-center">
+        <button type="button" onClick={openModal} className="bg-black text-white p-3 rounded">Open Modal</button>
+        <button type="button" onClick={openSuccessModal} className="bg-[#B99745] text-white p-3 rounded">Success Modal</button>
+    </div>
 
     {isModalOpen && (
         <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
           <h2>Modal Content</h2>
           <p>This is the content of the modal.</p>
-          <button type="button" onClick={closeModal}>Close</button>
+          <Button
+            onClick={closeModal}
+          disabled={false}
+          showArrow={false}
+          loading={false} round={false} size="medium"  type="alternate"
+        >Close</Button>
         </Modal>
       )}
+
+{isSuccessModal && (
+        <Modal isOpen={isSuccessModal} onRequestClose={closeSuccessModal}>
+          <div className=" flex flex-col gap-12 justify-center items-center  text-center">
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="80" height="80" rx="40" fill="#F9F9F9"/>
+      <path d="M64 37.8057V40.0137C63.997 45.1891 62.3212 50.2249 59.2224 54.3701C56.1236 58.5153 51.7679 61.5477 46.8048 63.0151C41.8418 64.4825 36.5374 64.3063 31.6827 62.5127C26.828 60.7192 22.6832 57.4044 19.8663 53.0627C17.0494 48.721 15.7115 43.5851 16.052 38.4209C16.3925 33.2567 18.3933 28.3409 21.7559 24.4067C25.1184 20.4725 29.6627 17.7307 34.7108 16.5901C39.759 15.4495 45.0406 15.9713 49.768 18.0777M64 20.8138L40 44.8378L32.8 37.6378" stroke="#B99745" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <div  className="max-w-[500px] truncate">
+        <span className="flex flex-col gap-10 items-center ">
+          <h1 className="text-3xl text-black font-bold">Request Approved</h1>
+          <p className="text-[#858585] truncate whitespace-normal">
+            You have successfully approved Oga Israel Transaction reversal request
+          </p>
+        </span>
+        </div>
+        <Button
+            onClick={closeSuccessModal}
+          disabled={false}
+          showArrow={false}
+          loading={false} round={false} size="medium"  type="alternate"
+        >
+          Okay 
+        </Button>
+      </div>
+          
+        </Modal>
+      )}
+    </div>
+
+    <div className="mt-6">
+      <h1 className="text-4xl">Table</h1>
     </div>
   </div>
 </div>
