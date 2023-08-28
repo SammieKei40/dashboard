@@ -3,16 +3,16 @@ import ReactModal from 'react-modal'
 
 interface Modal {
     isOpen: boolean;
-    onRequestClose: () => void;
+    // onRequestClose: () => void;
     children: ReactNode;
   }
   
 
-export default function Modal({ isOpen, onRequestClose, children }) {
+export default function Modal({ isOpen, children }) {
   return (
     <ReactModal
     isOpen={isOpen}
-    onRequestClose={onRequestClose}
+    // onRequestClose={onRequestClose}
     className="modal-content"
     overlayClassName="modal-overlay"
   >

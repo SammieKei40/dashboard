@@ -169,7 +169,7 @@ const TableComponent: React.FC<TableProps> = ({
               </td>
             </tr>
           )}
-        <ReactPaginate
+        {/* <ReactPaginate
           previousLabel={"Prev"}
           nextLabel={"Next"}
           breakLabel={"..."}
@@ -185,7 +185,7 @@ const TableComponent: React.FC<TableProps> = ({
           nextClassName={" p-2 rounded-md cursor-pointer"}
           pageClassName={" p-2 rounded-md cursor-pointer"}
           pageLinkClassName={"hover:bg-gray-200"}
-        />
+        /> */}
             
   </div>
   </td>

@@ -337,7 +337,7 @@ export default function Index() {
     </div>
 
     {isModalOpen && (
-        <Modal isOpen={isModalOpen} onRequestClose={closeModal}>
+        <Modal isOpen={isModalOpen} >
           <h2>Modal Content</h2>
           <p>This is the content of the modal.</p>
           <Button
@@ -350,7 +350,7 @@ export default function Index() {
       )}
 
 {isSuccessModal && (
-        <Modal isOpen={isSuccessModal} onRequestClose={closeSuccessModal}>
+        <Modal isOpen={isSuccessModal} >
           <div className=" flex flex-col gap-12 justify-center items-center  text-center">
               <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="80" height="80" rx="40" fill="#F9F9F9"/>
